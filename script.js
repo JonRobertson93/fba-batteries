@@ -1,10 +1,21 @@
-//run the first two lines of code on every page...
+//run this code on every page...
 checkUrl();
 
-
-// TODO - Auto complete the page before this
-
 function checkUrl() {
+	// Choose barcode type page
+	if (window.location.href.indexOf('https://sellercentral.amazon.com/gp/ssof/transfer-fn-confirm.html') != -1) {
+	// If there are no options to choose from (Amazon Barcode Only)
+		let text = document.querySelectorAll('td')[2].innerText;
+		let textWords = text.split(" ");
+		if (textWords[0] == "Amazon" && textWords[1] == "Barcode" && textWords[2] == "Only") {
+			setTimeout(function() {
+				console.log("AMAZON BARCODE ONLY");
+				let saveButton = document.getElementsByName("Save & Continue")[0];
+				saveButton.click();
+			}, 500);
+		}
+	}
+
 	//If on hazmat/battery page...
 	if (window.location.href.indexOf('https://sellercentral.amazon.com/gp/ssof/workflow/sendinventory.html/ref=ag_fbainventy_cont_fbaconfirm') != -1) {
 		let hazmatParent = document.getElementsByClassName('open-declaration-form-link')[0];
@@ -14,11 +25,11 @@ function checkUrl() {
 	}
 
 	if (window.location.href.indexOf('https://sellercentral.amazon.com/gp/ssof/workflow/sendinventory.html/ref=ag_fbainventy_cont_fbainventy') != -1) {
-		// click save & continue button after 1 second
+		// click save & continue button
 		setTimeout(function() {
 			let saveButton = document.getElementsByName("Save & Continue")[0];
 			saveButton.click();
-		}, 1000);	
+		}, 500);	
 	}
 
 	if (window.location.href.indexOf('https://sellercentral.amazon.com/gp/fba/inbound-plan-workflow/index.html#create') != -1) {
@@ -27,16 +38,24 @@ function checkUrl() {
 			if (document.getElementById('fba-inbound-manifest-workflow-create-add-existing')) {
 				let existingShipment = document.getElementById('fba-inbound-manifest-workflow-create-add-existing');
 				existingShipment.click();
-				// Select existing shipment from dropdown
-				setTimeout(function() {
-					document.getElementsByName('manifest-name-select')[0].selectedIndex = 1;
-				}, 500);
-				
-				// Submit form
-				document.getElementById('save-manifest').click();
 			}	
 		}, 500);
+		// test
+		document.getElementById('save-manifest').addEventListener('click', function() {
+			setTimeout(function() {
+				let numberInputs = document.getElementsByClassName('update-number-cases');
+				for (let x = 0; x < numberInputs.length; x++) {
+				    if (!numberInputs[x].value) {
+				        numberInputs[x].focus();
+				    }
+				}
+			}, 4000);
+		});	
 	}
+
+	// if (window.location.href.indexOf('https://sellercentral.amazon.com/gp/fba/inbound-plan-workflow/index.html') != -1) {
+	// 	enterItemQty();
+	// }
 }
 
 // TODO - Auto complete the page after this
@@ -56,4 +75,15 @@ function noBatteries() {
 	let submit = document.getElementsByName('popup_submit')[1];
 	submit.click();
 	
+}
+
+function enterItemQty() {
+	setTimeout(function() {
+		let numberInputs = document.getElementsByClassName('update-number-cases');
+		for (let x = 0; x < numberInputs.length; x++) {
+		    if (!numberInputs[x].value) {
+		        numberInputs[x].focus();
+		    }
+		}
+	}, 4000);
 }
