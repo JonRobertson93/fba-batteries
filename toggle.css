@@ -1,0 +1,56 @@
+body {
+    width: auto;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h1 {
+  font-size: 115%;
+}
+
+/* The switch - the box around the slider */
+#outerBox {
+    border: 1px solid #c0bebe;
+    border-radius: 35px;
+    background: #c0bebe;
+    position: relative;
+    content: "";
+    display: inline-block;
+    width: 65px;
+    height: 34px;
+    margin-bottom: 1em;
+}
+
+#toggler {
+    background-color: white;
+    border: 1px solid white;
+    position: relative;
+    content: "";
+    display: inline-block;
+    width: 31px;
+    height: 30px;
+    border-radius: 25px;
+    margin: 1px;
+}
+
+.colorOn {
+  background: #1dc61e!important;
+}
+
+.slidingOn {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(29px);
+  transition-duration: 0.5s;
+}
+
+.slidingOff {
+  -webkit-transform: translateX(-26px);
+  -ms-transform: translateX(-26px);
+  transform: translateX(-29px);
+  transition-duration: 0.5s;
+}
+
+

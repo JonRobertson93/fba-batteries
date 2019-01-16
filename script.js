@@ -1,4 +1,5 @@
-//run this code on every page...
+
+//TODO - IF STATEMENT FOR CHECKURL!
 checkUrl();
 
 function checkUrl() {
